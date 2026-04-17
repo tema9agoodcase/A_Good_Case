@@ -1,4 +1,31 @@
 ---
-
+const { title, variant = "primary" } = Astro.props;
 ---
 <!-- Knap læs mere -->
+
+
+<button class={`btn btn--${variant}`}>{title}</button>
+
+<style>
+  .btn {
+    padding: 4px 15px;
+    border: solid #FFFDFB;
+    cursor: pointer;
+    background: #198A2E;
+    color: #FFFDFB;
+    font-size: 13px;
+  }
+
+  .btn:hover{
+    background: #FFFDFB;
+    color:#198A2E;
+    border: solid #198A2E;
+  }
+
+      @media (max-width: 800px) {
+    .btn{
+        font-size: 9px;
+    }
+  }
+
+</style>
