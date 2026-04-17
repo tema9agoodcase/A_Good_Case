@@ -1,4 +1,30 @@
 ---
-
+const { title, variant = "primary" } = Astro.props;
 ---
-<!-- Tilføj til kurv knap -->
+
+<button class={`btn btn--${variant}`}>{title}</button>
+
+<style>
+  .btn {
+    padding: 5px 60px;
+    border: solid #FFFDFB;
+    cursor: pointer;
+    background: #198A2E;
+    color: #FFFDFB;
+    font-size: 15px;
+  }
+
+  .btn:hover{
+    background: #FFFDFB;
+    color:#198A2E;
+    border: solid #198A2E;
+  }
+
+    @media (max-width: 800px) {
+    .btn{
+        padding: 5px 45px;
+        font-size: 11px;
+    }
+  }
+
+</style>
