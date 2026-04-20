@@ -1,0 +1,50 @@
+---
+const {product} = Astro.props;
+import Knap1 from "../componenter/Knap_1.astro";
+---
+<article>
+    <img src={product.img} alt="productimage">
+    <p class="bestbefore">Best before {product.bestbefore}</p>
+    <hr class="linje">
+<h3>{product.name}</h3>
+<p class="price">{product.price} kr pr. stk</p>
+<div class="kurv">
+<Knap1 title="Tilføj til kurv"/>
+</div>
+</article>
+
+<style>
+.bestbefore{text-align: center;}
+
+.price {
+    margin-top: auto;}
+
+.kurv {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+}
+
+    .linje {
+  border: none;
+  height: 2px;
+  background-color: #BFB59F;
+}
+    article
+    {
+    padding: 1rem;
+    max-width: 450px;
+    margin: 20px;
+display: flex;
+  flex-direction: column;}
+
+  article:hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+    img{display: flex;
+        justify-content: center;
+        width: 200px;
+    
+    }
+</style>
