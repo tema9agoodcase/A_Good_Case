@@ -1,6 +1,47 @@
 ---
 import Layout from "../layout/Layout.astro";
+import Pcard from "../componenter/pcard.astro";
+const endpoint = "https://okvowjyxecqetvbxrzgz.supabase.co/rest/v1/beers_produkter?select=*";
+
+const options={
+    headers:{
+        apikey: "sb_publishable_jnXD65Kv5X5LsuzRSrF0QQ_aVlCLROB",
+    },
+};
+
+const data = await fetch(endpoint, options)
+  .then((response) => response.json());
+
+console.log(data);
 ---
 
 <Layout>
+        <img class="img_icon" src="/img/icon.svg" alt="Genbrug ikon" />
+    <h1>Billige specialøl</h1>
+     <div class="filtrer">
+    <img class="img_filtrer" src="/img/filtrer.svg" alt="Filtrer ikon" />
+    <p>FILTRER</p>
+  </div>
+    <section>
+{data.map((product) => (<Pcard {product}/>))}
+</section>
+
 </Layout>
+
+<style>
+.img_icon {margin: 30px;}
+
+.filtrer {margin: 30px;
+margin-left: 100px;
+display: flex;}
+
+.img_filtrer {margin: 10px;}
+
+
+    h1 {text-align: center;}
+section 
+{display: grid;
+grid-template-columns: repeat(5, 1fr);
+max-width: 1450px;}
+
+</style>
