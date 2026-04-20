@@ -1,4 +1,7 @@
-
+---
+import Logo from '../images/Logo1.svg';
+import Salg from '../images/Salg.webp';
+---
 <html lang="da">
 	<head>
 		<meta charset="utf-8" />
@@ -6,10 +9,312 @@
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+		<meta name="robots" content="noindex, nofollow" />
 		<title>Astro</title>
 	</head>
 	<body>
+		<header>
+			<Logo />
+			<div class="logo">
+			</div>
+			<nav>
+				<ul class="menu">
+					<li class="dropdown">
+						<button class="dropdown-toggle" type="button">
+							Øluniverset
+						</button>
+						<ul class="dropdown-menu">
+							<li><a href="/">Billige Specialøl</a></li>
+							<li><a href="/">Billige smagskasser</a></li>
+							<li><a href="/">Alle vores Øl</a></li>
+						</ul>
+					</li>
+
+					<li><a href="/">Abonnement</a></li>
+					<li><a href="/">Ølsmagning</a></li>
+					<li><a href="/">Giv en gave</a></li>
+					<li><a href="/">Erhverv</a></li>
+				</ul>
+
+				<button class="burger" type="button">
+					<span class="line"></span>
+					<span class="line"></span>
+					<span class="line"></span>
+				</button>
+			</nav>
+		</header>
+
 		<h1>Astro</h1>
 		<slot/>
+
+		<footer>
+			<section class="grid_4">
+				<div>
+					<h2>Mere om os</h2>
+					<p>Om os </p>
+					<p>Betingelser og politik</p>
+					<p>Levering og prisgaranti</p>
+					<p>Partnerskaber</p>
+					<p>Lagersalg</p>
+					<p>Smiley rapport</p>
+					<p>Cookiepolitik</p>
+					<p>Spørgsmål og svar</p>
+				</div>
+				<div>
+					<h2>Åbningstider</h2>
+					<p>Lagersalg samt afhentning af onlineordrer: Onsdag-Fredag: 10:00 - 17:00</p>
+				</div>
+				<div>
+					<h2>Virksomhedsadresse</h2>
+					<p>A Good Case Aps</p>
+					<p>Vallensbækvej 55</p>
+					<p>2605 Brøndby</p>
+					<p>CVR-nr 41440031</p>
+				</div>
+				<div>
+					<h2>Kontakt Os</h2>
+					<p>info@agoodcase.dk</p>
+					<p>tlf. nr. +45 30 45 99 90 mellem 9:00-12:00 i hverdage </p>
+				</div>
+			</section>
+			<hr class="devider" />
+			<div id="billede">
+				<img src={Salg.src} alt="Salg" />
+			</div>
+		</footer>
+
+		<script>
+			const burger = document.querySelector(".burger");
+			const nav = document.querySelector("nav");
+			const dropdownToggle = document.querySelector(".dropdown-toggle");
+			const dropdown = document.querySelector(".dropdown");
+
+			if (burger && nav) {
+				burger.addEventListener("click", () => {
+					burger.classList.toggle("active");
+					nav.classList.toggle("active");
+				});
+			}
+
+			if (dropdownToggle && dropdown) {
+				dropdownToggle.addEventListener("click", () => {
+					dropdown.classList.toggle("open");
+				});
+			}
+		</script>
 	</body>
 </html>
+
+<style>
+footer {
+	background-color: #252424;
+	padding: 10px;
+}
+
+.grid_4 {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+}
+
+p {
+	max-width: 200px;
+	color: #FFFDFB;
+	font-size: 15px;
+	font-family: "Roboto", sans-serif;
+	font-weight: 300;
+	padding-top: 10px;
+}
+
+h2 {
+	color: #FFFDFB;
+	font-size: 20px;
+	font-family: "Roboto", sans-serif;
+	font-weight: 500;
+}
+
+#billede{
+	padding: 10px;
+	margin: auto;
+}
+
+header {
+	position: sticky;
+	top: 0;
+	display: flex;
+	justify-content: space-between;
+	padding: 20px;
+	background-color: #FFFDFB;
+	border-bottom: 1px solid #BFB59F;
+	font-family: "Roboto", sans-serif;
+}
+
+.logo img {
+	width: 150px;
+	height: 60px;
+}
+
+nav {
+	display: flex;
+	color: #392F1C;
+}
+
+.menu {
+	display: flex;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.menu li {
+	margin-right: 20px;
+	position: relative;
+}
+
+.menu li:last-child {
+	margin-right: 0;
+}
+
+.menu a,
+.dropdown-toggle {
+	display: block;
+	padding: 10px;
+	color: #333333;
+	text-decoration: none;
+	transition: color 0.3s;
+	font-size: 16px;
+	font-family: "Roboto", sans-serif;
+	background: none;
+	border: none;
+}
+
+.menu a:hover,
+.dropdown-toggle:hover {
+	color: #392F1C;
+	font-weight: 600;
+}
+
+/* Dropdown */
+.dropdown-menu {
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	min-width: 220px;
+	background-color: #FFFDFB;
+	border: 1px solid #BFB59F;
+	list-style: none;
+	padding: 10px 0;
+	margin: 0;
+	z-index: 10;
+}
+
+.dropdown-menu li {
+	margin: 0;
+}
+
+.dropdown-menu a {
+	padding: 10px 15px;
+	text-align: left;
+	white-space: nowrap;
+}
+
+.dropdown:hover .dropdown-menu {
+	display: block;
+}
+
+.burger {
+	width: 30px;
+	height: 20px;
+	cursor: pointer;
+}
+
+.burger .line {
+	display: block;
+	width: 100%;
+	height: 2px;
+	background-color: #333333;
+	margin-bottom: 5px;
+	transition: 0.2s linear;
+}
+
+.burger {
+	display: none;
+}
+
+@media screen and (max-width: 800px) {
+	.menu {
+		display: none;
+	}
+
+	.burger {
+		display: block;
+		background-color: transparent;
+		border: 0;
+	}
+
+	.burger.active .line:nth-child(1) {
+		transform: rotate(45deg) translate(5px, 5px);
+		transition: 0.2s linear;
+	}
+
+	.burger.active .line:nth-child(2) {
+		opacity: 0;
+		transition: 0.15s linear;
+	}
+
+	.burger.active .line:nth-child(3) {
+		transform: rotate(-45deg) translate(5px, -5px);
+		transition: 0.2s linear;
+	}
+
+	nav.active .menu {
+		display: block;
+		background-color: #ffffff;
+		position: absolute;
+		top: 94px;
+		left: 0;
+		width: 100%;
+		box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+		z-index: 1;
+	}
+
+	nav.active .menu li {
+		margin: 10px 20px;
+	}
+
+	nav.active .menu a,
+	nav.active .dropdown-toggle {
+		font-size: 15px;
+		text-align: right;
+		width: 100%;
+	}
+
+	.dropdown-menu {
+		position: static;
+		display: none;
+		border: none;
+		box-shadow: none;
+		padding-left: 15px;
+		background: transparent;
+	}
+
+	.dropdown:hover .dropdown-menu {
+		display: none;
+	}
+
+	.dropdown.open .dropdown-menu {
+		display: block;
+	}
+	.grid_4 {
+	display: grid;
+	grid-template-columns: 1fr;
+	padding: 5px;
+	}
+
+	h2{padding-top: 25px;}
+
+}
+</style>
