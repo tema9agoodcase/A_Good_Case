@@ -1,4 +1,56 @@
 ---
-
+// src/components/TickerBanner.astro
 ---
-<!-- Bevægnede banner med deres vigtigste ting -->
+
+<div class="ticker-wrap" role="marquee" aria-label="Løbende banner">
+  <div class="ticker-track">
+    <span>BEKÆMPER ØLSPILD</span><span class="dot">•</span>
+    <span>SOCIALT ANSVAR</span><span class="dot">•</span>
+    <span>STORT UDVALG</span><span class="dot">•</span>
+    <span>LAVE PRISER</span><span class="dot">•</span>
+    <span>BEKÆMPER ØLSPILD</span><span class="dot">•</span>
+    <span>SOCIALT ANSVAR</span><span class="dot">•</span>
+    <span>STORT UDVALG</span><span class="dot">•</span>
+    <span>LAVE PRISER</span><span class="dot">•</span>
+  </div>
+</div>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+  .ticker-wrap {
+    background: #198A2E;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 6px 0;
+    width: 100%;
+  }
+
+  .ticker-track {
+    display: inline-flex;
+    animation: ticker 18s linear infinite;
+  }
+
+  .ticker-track span {
+    font-family: 'Roboto', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: #FFFDFB;
+    padding: 0 1.5rem;
+  }
+
+  .dot {
+    color: #FFFDFB;
+    opacity: 0.6;
+  }
+
+  @keyframes ticker {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @media (max-width: 800px) {
+    .ticker-track { animation: none; }
+  }
+</style>
