@@ -1,4 +1,80 @@
 ---
-
+import Forside_knap from "../componenter/Forside_knap.astro";
 ---
 <!-- De tre billeder placeret øverst på forsiden -->
+<section>
+  <div class="vesntre">
+    <img class="img_venstre" src="/img/skaal.webp" alt="Skål" />
+  </div>
+
+  
+  <div class="hojre">
+
+    <div class="smagskasse">
+      <img class="img_hojre" src="/img/smagskasse.webp" alt="Smagskasse">
+<Forside_knap tekst="NYHEDER" />
+    </div>
+
+    <div class="nyheder">
+      <img class="img_hojre" src="/img/ol.webp" alt="Nyheder">
+<Forside_knap tekst="SMAGSKASSER" />
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+
+section {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+}
+
+.hojre {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 1rem;
+}
+
+.img_venstre {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.img_hojre {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.smagskasse, .nyheder {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.smagskasse :global(button), .nyheder :global(button) {
+  position: absolute;
+bottom: 150px;
+}
+
+@media (max-width: 800px) {
+  section {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .hojre {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0.5rem;
+  }
+}
+
+</style>
