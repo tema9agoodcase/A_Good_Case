@@ -3,7 +3,7 @@
 ---
 
 <div class="ticker-wrap" role="marquee" aria-label="Løbende banner">
-  <div class="ticker-track">
+  <div class="ticker-track" id="tickerTrack">
     <span>BEKÆMPER ØLSPILD</span><span class="dot">•</span>
     <span>SOCIALT ANSVAR</span><span class="dot">•</span>
     <span>STORT UDVALG</span><span class="dot">•</span>
@@ -28,7 +28,7 @@
 
   .ticker-track {
     display: inline-flex;
-    animation: ticker 18s linear infinite;
+    will-change: transform;
   }
 
   .ticker-track span {
@@ -38,6 +38,7 @@
     letter-spacing: 0.08em;
     color: #FFFDFB;
     padding: 0 1.5rem;
+    white-space: nowrap;
   }
 
   .dot {
@@ -49,8 +50,23 @@
     0%   { transform: translateX(0); }
     100% { transform: translateX(-50%); }
   }
-
-  @media (max-width: 800px) {
-    .ticker-track { animation: none; }
-  }
 </style>
+
+<script>
+  const track = document.getElementById('tickerTrack');
+
+  if (track) {
+    const ensureEnoughContent = () => {
+      const minWidth = window.innerWidth * 2;
+      while (track.scrollWidth < minWidth) {
+        track.innerHTML += track.innerHTML;
+      }
+      const finalWidth = track.scrollWidth;
+      if (finalWidth > 0) {
+        track.style.animation = `ticker ${Math.max(finalWidth / 80, 10)}s linear infinite`;
+      }
+    };
+
+    document.fonts.ready.then(ensureEnoughContent);
+  }
+</script>
