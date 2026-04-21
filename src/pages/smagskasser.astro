@@ -1,11 +1,17 @@
 ---
 import Layout from "../layout/Layout.astro";
+ smagskasserproductlist
+import PcardSmagskasse from "../componenter/PcardSmagskasse.astro";
+const endpoint = "https://etarsiqlcxhzhbbnkvuv.supabase.co/rest/v1/Smagskasser?select=*";
+=======
 import Pcard from "../componenter/Pcard.astro";
 const endpoint = "https://okvowjyxecqetvbxrzgz.supabase.co/rest/v1/beers_produkter?select=*";
+ main
 
 const options={
     headers:{
-        apikey: "sb_publishable_jnXD65Kv5X5LsuzRSrF0QQ_aVlCLROB",
+        apikey: "sb_publishable_EnRm-UFeqtEtlMUvBcCH4g_4zaC8eAa",
+        Authorization: "Bearer sb_publishable_EnRm-UFeqtEtlMUvBcCH4g_4zaC8eAa",
     },
 };
 
@@ -16,16 +22,15 @@ console.log(data);
 ---
 
 <Layout>
-        <img class="img_icon" src="/img/icon.svg" alt="Genbrug ikon" />
+    <img class="img_icon" src="/img/icon.svg" alt="Genbrug ikon" />
     <h1>Smagskasser</h1>
-     <div class="filtrer">
-    <img class="img_filtrer" src="/img/filtrer.svg" alt="Filtrer ikon" />
-    <p>FILTRER</p>
-  </div>
+    <div class="filtrer">
+        <img class="img_filtrer" src="/img/filtrer.svg" alt="Filtrer ikon" />
+        <p>FILTRER</p>
+    </div>
     <section>
-{data.map((product) => (<Pcard {product}/>))}
-</section>
-
+        {data.map((product) => (<PcardSmagskasse {product}/>))}
+    </section>
 </Layout>
 
 <style>
@@ -37,11 +42,9 @@ display: flex;}
 
 .img_filtrer {margin: 10px;}
 
-
-    h1 {text-align: center;}
+h1 {text-align: center;}
 section 
 {display: grid;
 grid-template-columns: repeat(5, 1fr);
 max-width: 1450px;}
-
 </style>
