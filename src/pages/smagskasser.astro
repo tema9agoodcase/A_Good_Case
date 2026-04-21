@@ -19,10 +19,6 @@ console.log(data);
 <Layout>
     <img class="img_icon" src="/img/icon.svg" alt="Genbrug ikon" />
     <h1>Smagskasser</h1>
-    <div class="filtrer">
-        <img class="img_filtrer" src="/img/filtrer.svg" alt="Filtrer ikon" />
-        <p>FILTRER</p>
-    </div>
     <section>
         {data.map((product) => (<PcardSmagskasse {product}/>))}
     </section>
