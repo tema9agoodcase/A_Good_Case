@@ -16,19 +16,55 @@ console.log(data);
 ---
 
 <Layout>
-        <img class="img_icon" src="/img/icon.svg" alt="Genbrug ikon" />
     <h1>Billige specialøl</h1>
      <div class="filtrer">
     <img class="img_filtrer" src="/img/filtrer.svg" alt="Filtrer ikon" />
     <p>FILTRER</p>
   </div>
+  <section id="buttons">
+        <button data-type="Alle">Alle</button>
+    <button data-type="Ipa">Ipa</button>
+     <button data-type="Stout">Stout</button>
+      <button data-type="Wild ale">Wild ale</button>
+       <button data-type="Lager">Lager</button>
+        <button data-type="Weissbier">Weissbier</button>
+        <button data-type="Weisse">Weisse</button>
+</section>
     <section>
 {data.map((product) => (<Pcard {product}/>))}
 </section>
 
 </Layout>
 
+<script>
+document
+.querySelectorAll("button")
+.forEach((button) => button.addEventListener("click", filtrer));
+
+function filtrer(e) {
+    const cards = document.querySelectorAll(".Pcard");
+    const valgtType = e.target.dataset.type;
+    console.log(e.target)
+    cards.forEach((card) => {
+        if (card.dataset.type == valgtType || valgtType == "Alle") {
+            card.classList.remove("hide");
+        } else {
+            card.classList.add("hide");
+        }
+    });
+}
+</script>
+
 <style>
+#buttons button {
+   margin: 10px;
+   min-width: 100px;
+   background-color: #FFFDFB;
+   border-radius: solid 1px black;
+}
+
+#buttons {display: flex;}
+
 .img_icon {margin: 30px;}
 
 .filtrer {margin: 30px;
@@ -39,9 +75,11 @@ display: flex;}
 
 
     h1 {text-align: center;}
-section 
+
+    section 
 {display: grid;
 grid-template-columns: repeat(5, 1fr);
 max-width: 1450px;}
+
 
 </style>

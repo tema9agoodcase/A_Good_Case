@@ -2,6 +2,8 @@
 const {product} = Astro.props;
 import Knap1 from "../componenter/Knap_1.astro";
 ---
+
+<a href=`details/${product.Handle}` class="Pcard" data-type={product.Type}>
 <article>
     <img src={product.img} alt="productimage">
     <p class="bestbefore">Best before {product.bestbefore}</p>
@@ -12,8 +14,13 @@ import Knap1 from "../componenter/Knap_1.astro";
 <Knap1 title="Tilføj til kurv"/>
 </div>
 </article>
+</a>
 
 <style>
+
+    a {text-decoration: none;
+    color: #392F1C;}
+
 .bestbefore{text-align: center;}
 
 .price {
@@ -47,4 +54,6 @@ display: flex;
         width: 200px;
     
     }
+
+    .hide {display: none;}
 </style>
