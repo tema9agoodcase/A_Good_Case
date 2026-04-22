@@ -1,11 +1,5 @@
 ---
-export const prerender = false;
-
 import Layout from "../../layout/Layout.astro";
-
-const { id } = Astro.params;
-
-const endpoint = `https://etarsiqlcxhzhbbnkvuv.supabase.co/rest/v1/Smagskasser?id=eq.${id}&select=*`;
 
 const options = {
     headers: {
@@ -14,8 +8,24 @@ const options = {
     },
 };
 
-const data = await fetch(endpoint, options).then((res) => res.json());
-const product = data[0];
+export async function getStaticPaths() {
+    const data = await fetch(
+        "https://etarsiqlcxhzhbbnkvuv.supabase.co/rest/v1/Smagskasser?select=*",
+        {
+            headers: {
+                apikey: "sb_publishable_EnRm-UFeqtEtlMUvBcCH4g_4zaC8eAa",
+                Authorization: "Bearer sb_publishable_EnRm-UFeqtEtlMUvBcCH4g_4zaC8eAa",
+            },
+        }
+    ).then((res) => res.json());
+
+    return data.map((product) => ({
+        params: { id: String(product.id) },
+        props: { product },
+    }));
+}
+
+const { product } = Astro.props;
 ---
 
 <Layout>
