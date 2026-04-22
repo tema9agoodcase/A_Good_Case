@@ -1,0 +1,139 @@
+---
+export const prerender = false;
+
+import Layout from "../../layout/Layout.astro";
+
+const { id } = Astro.params;
+
+const endpoint = `https://etarsiqlcxhzhbbnkvuv.supabase.co/rest/v1/Smagskasser?id=eq.${id}&select=*`;
+
+const options = {
+    headers: {
+        apikey: "sb_publishable_EnRm-UFeqtEtlMUvBcCH4g_4zaC8eAa",
+        Authorization: "Bearer sb_publishable_EnRm-UFeqtEtlMUvBcCH4g_4zaC8eAa",
+    },
+};
+
+const data = await fetch(endpoint, options).then((res) => res.json());
+const product = data[0];
+---
+
+<Layout>
+  <div class="detalje-wrap">
+    <div class="billede-kolonne">
+      <img src={product.Billede} alt={product.Navn} />
+    </div>
+    <div class="info-kolonne">
+      <h1>{product.Navn}</h1>
+      <p class="bestbefore">Bedst før: {product["Bedst før"]}</p>
+      <p class="pris">{product.Pris}</p>
+      <p class="vejl"><s>{product["Vejl markedspris"]} (vejl. markedspris)</s></p>
+
+      <a href="/kurv" class="kurv-knap">Tilføj til kurven</a>
+
+      <div class="accordion">
+        <details>
+          <summary>Læs mere om {product.Navn}</summary>
+          <p>{product["Læs mere om"]}</p>
+        </details>
+        <details>
+          <summary>Information</summary>
+          <p>{product.Information}</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .detalje-wrap {
+    display: flex;
+    gap: 4rem;
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 0 2rem;
+  }
+
+  .billede-kolonne img {
+    width: 350px;
+    object-fit: contain;
+  }
+
+  .info-kolonne {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+
+  .bestbefore {
+    font-size: 0.85rem;
+    color: #888;
+  }
+
+  .pris {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #198A2E;
+  }
+
+  .vejl {
+    font-size: 0.85rem;
+    color: #888;
+  }
+
+  .kurv-knap {
+    background: #198A2E;
+    color: white;
+    padding: 0.75rem 2rem;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+
+  .kurv-knap:hover {
+    background: #146a24;
+  }
+
+  .accordion {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  details {
+    border-bottom: 1px solid #ccc;
+    padding: 0.75rem 0;
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: 500;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  summary::after {
+    content: "∨";
+  }
+
+  details[open] summary::after {
+    content: "∧";
+  }
+
+  details p {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    white-space: pre-line;
+  }
+</style>

@@ -1,0 +1,27 @@
+
+---
+const endpoint = "https://etarsiqlcxhzhbbnkvuv.supabase.co/rest/v1/Smagskasser?select=*";
+
+const options={
+    headers:{
+        apikey: "sb_publishable_EnRm-UFeqtEtlMUvBcCH4g_4zaC8eAa",
+        Authorization: "Bearer sb_publishable_EnRm-UFeqtEtlMUvBcCH4g_4zaC8eAa",
+    },
+};
+
+export async function getStaticPaths() {
+  const response = await fetch('...');
+  const data = await response.json();
+
+  return data.map((post) => {
+    return {
+      params: { id: post.id },
+      props: { post },
+    };
+  });
+}
+
+const { id } = Astro.params;
+const { post } = Astro.props;
+---
+<h1>{id}: {post.name}</h1>
