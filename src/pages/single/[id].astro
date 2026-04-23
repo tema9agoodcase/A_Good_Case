@@ -1,18 +1,18 @@
 ---
-const endpoint = "https://etarsiqlcxhzhbbnkvuv.supabase.co/rest/v1/Smagskasser?select=*";
-
-const options = {
-  headers: {
-    apikey: "sb_publishable_EnRm-UFeqtEtlMUvBcCH4g_4zaC8eAa",
-    Authorization: "Bearer sb_publishable_EnRm-UFeqtEtlMUvBcCH4g_4zaC8eAa",
-  },
-};
-
 export async function getStaticPaths() {
+  const endpoint = "https://etarsiqlcxhzhbbnkvuv.supabase.co/rest/v1/Smagskasser?select=*";
+
+  const options = {
+    headers: {
+      apikey: "sb_publishable_EnRm-UFeqtEtlMUvBcCH4g_4zaC8eAa",
+      Authorization: "Bearer sb_publishable_EnRm-UFeqtEtlMUvBcCH4g_4zaC8eAa",
+    },
+  };
+
   const response = await fetch(endpoint, options);
   const data = await response.json();
 
-  return data.map((post) => {
+  return data.map((post: any) => {
     return {
       params: { id: String(post.id) },
       props: { post },
@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 }
 
 const { id } = Astro.params;
-const { post } = Astro.props;
+const { post } = Astro.props as any;
 ---
 
-<h1>{id}: {post.name}</h1>
+<h1>{id}: {post.Navn}</h1>
