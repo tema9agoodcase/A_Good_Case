@@ -1,59 +1,39 @@
 ---
 const {product} = Astro.props;
-import Knap1 from "../componenter/Knap_1.astro";
 ---
-
-<a href=`details/${product.Handle}` class="Pcard" data-type={product.Type}>
+<a href={`/beersdetalje/${product.id}`} class="Pcard" data-type={product.Type}>
 <article>
     <img src={product.img} alt="productimage">
     <p class="bestbefore">Best before {product.bestbefore}</p>
     <hr class="linje">
-<h3>{product.name}</h3>
-<p class="price">{product.price} kr pr. stk</p>
-<div class="kurv">
-<Knap1 title="Tilføj til kurv"/>
-</div>
+    <h3>{product.name}</h3>
+    <p class="price">{product.price} kr pr. stk</p>
 </article>
 </a>
-
 <style>
-
     a {text-decoration: none;
     color: #392F1C;}
-
 .bestbefore{text-align: center;}
-
-.price {
-    margin-top: auto;}
-
-.kurv {
-  display: flex;
-  justify-content: center;
-  margin-top: auto;
-}
-
-    .linje {
+.price { margin-top: auto;}
+.linje {
   border: none;
   height: 2px;
   background-color: #BFB59F;
 }
-    article
-    {
+article {
     padding: 1rem;
     max-width: 450px;
     margin: 20px;
-display: flex;
-  flex-direction: column;}
-
-  article:hover {
+    display: flex;
+    flex-direction: column;
+}
+article:hover {
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
-
-    img{display: flex;
-        justify-content: center;
-        width: 200px;
-    
-    }
-
-    .hide {display: none;}
+img {
+    display: flex;
+    justify-content: center;
+    width: 200px;
+}
+.hide {display: none;}
 </style>
