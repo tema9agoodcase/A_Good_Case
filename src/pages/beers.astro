@@ -16,6 +16,7 @@ console.log(data);
 ---
 
 <Layout>
+    <img class="img_icon" src="/img/icon.svg" alt="Genbrug ikon" />
     <h1>Billige specialøl</h1>
      <div class="filtrer">
     <img class="img_filtrer" src="/img/filtrer.svg" alt="Filtrer ikon" />
@@ -81,5 +82,16 @@ display: flex;}
 grid-template-columns: repeat(5, 1fr);
 max-width: 1450px;}
 
+@media (max-width: 800px) {
+   section 
+{display: grid;
+grid-template-columns: repeat(2, 1fr);}
+  
+#buttons button {
+   min-width: 60px;
+}
 
+.filtrer {margin: 30px;
+margin-left: 30px;}
+}
 </style>
