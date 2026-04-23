@@ -1,4 +1,109 @@
 ---
+import { Image } from "astro:assets";
+import Social from "../images/social.webp";
+import Redning from "../images/redning.webp";
+import Hjerte from "../images/hjerte.webp"
+import Verden from "../images/verden.webp"
+import Knap2 from "./Knap_2.astro";
 
 ---
-<!-- Information omrking deres to mærkesager - socailt anvar og bæredygtighed -->
+
+<section class="grid_2">
+  <div class="img1">
+    <Image class="info_img" src={Redning} alt="Redning af øl" />
+  </div>
+
+  <div class="text1">
+    <h2>Ølredning og ølspild</h2>
+    <Image src={Verden} alt="Verden"/>
+    <p>Hos A Good Case redder vi øl, der ellers ville gå til spilde. Gennem vores “Less Waste”-koncept opkøber vi overskydende partier fra bryggerier – øl som stadig er i perfekt kvalitet, men som risikerer at blive kasseret. I stedet giver vi dem nyt liv og gør det muligt for dig at nyde god øl til en skarp pris, samtidig med at vi sammen reducerer madspild.</p>
+    <Knap2 title="Læs mere" />
+  </div>
+
+  <div class="text2">
+    <h2>Vores sociale ansvar</h2>
+    <Image src={Hjerte} alt="Hjerte"/>
+    <p>Vi tilbyder praktikpladser til både unge og voksne med fysiske eller psykiske udfordringer. Vores mål er at støtte personer, der kan have vanskeligheder med at få fodfæste på arbejdsmarkedet, og give dem mulighed for at udvikle deres kompetencer i et trygt og inkluderende miljø. Der vil desuden være mulighed for efterfølgende ansættelse.</p>
+    <Knap2 title="Læs mere" />
+  </div>
+
+  <div class="img2">
+    <Image class="info_img" src={Social} alt="Social ansvar" />
+  </div>
+</section>
+
+<style>
+  .grid_2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+
+  .img1 {
+    grid-column: 1;
+    grid-row: 1;
+    padding-top: 10px;
+  }
+
+  .text1 {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .text2 {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .img2 {
+    grid-column: 2;
+    grid-row: 2;
+    padding-bottom: 10px;
+  }
+
+  .text1,
+  .text2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 3rem;
+  }
+
+  .info_img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+
+@media (max-width: 800px) {
+  .grid_2 {
+    grid-template-columns: 1fr;
+  }
+
+  .img1{
+    grid-column: 1;
+    grid-row: 1;
+}
+
+  .text1{
+    grid-column: 1;
+    grid-row: 2;
+}
+
+  .text2{
+    grid-column: 1;
+    grid-row: 4;
+}
+
+
+  .img2{
+    grid-column: 1;
+    grid-row: 3;
+}
+
+}
+</style>
