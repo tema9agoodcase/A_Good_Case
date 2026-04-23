@@ -1,6 +1,81 @@
 ---
 import Layout from "../layout/Layout.astro";
+import Pcard from "../componenter/Pcard.astro";
+import PcardSmagskasse from "../componenter/PcardSmagskasse.astro";
+import MovingBanner2 from "../componenter/Moving_banner_2.astro";
+
+const endpointBeer =
+"https://okvowjyxecqetvbxrzgz.supabase.co/rest/v1/beers_produkter?select=*&limit=16";
+
+const endpointSmagskasse =
+"https://etarsiqlcxhzhbbnkvuv.supabase.co/rest/v1/Smagskasser?select=*&limit=17";
+
+const optionsBeer = {
+  headers: {
+    apikey: "sb_publishable_jnXD65Kv5X5LsuzRSrF0QQ_aVlCLROB",
+  },
+};
+
+const optionsSmagskasse = {
+  headers: {
+    apikey: "sb_publishable_EnRm-UFeqtEtlMUvBcCH4g_4zaC8eAa",
+    Authorization: "Bearer sb_publishable_EnRm-UFeqtEtlMUvBcCH4g_4zaC8eAa",
+  },
+};
+
+const dataBeer = await fetch(endpointBeer, optionsBeer)
+  .then((response) => response.json());
+
+const dataSmagskasse = await fetch(endpointSmagskasse, optionsSmagskasse)
+  .then((response) => response.json());
+
+console.log(dataBeer);
+console.log(dataSmagskasse);
 ---
 
+
 <Layout>
+    <MovingBanner2/>
+    <img class="img_icon" src="/img/icon.svg" alt="Genbrug ikon" />
+    <h1>Alle vores øl</h1>
+<section>
+  {dataSmagskasse.map((product) => (
+    <PcardSmagskasse {product} />
+  ))}
+
+  {dataBeer.map((product) => (
+    <Pcard {product} />
+  ))}
+</section>
+
 </Layout>
+
+
+<style>
+.img_icon {margin: 30px;}
+
+.filtrer {margin: 30px;
+margin-left: 100px;
+display: flex;}
+
+.img_filtrer {margin: 10px;}
+
+
+    h1 {text-align: center;}
+
+    section 
+{display: grid;
+grid-template-columns: repeat(5, 1fr);
+max-width: 1450px;}
+
+@media (max-width: 800px) {
+   section 
+{display: grid;
+grid-template-columns: repeat(2, 1fr);}
+  
+#buttons button {
+   min-width: 60px;
+}
+
+}
+</style>
