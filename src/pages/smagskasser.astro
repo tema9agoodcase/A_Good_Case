@@ -1,6 +1,7 @@
 ---
 import Layout from "../layout/Layout.astro";
 import PcardSmagskasse from "../componenter/PcardSmagskasse.astro";
+import MovingBanner2 from "../componenter/Moving_banner_2.astro";
 const endpoint = "https://etarsiqlcxhzhbbnkvuv.supabase.co/rest/v1/Smagskasser?select=*";
 
 const options={
@@ -15,6 +16,7 @@ const data = await fetch(endpoint, options)
 ---
 
 <Layout>
+    <MovingBanner2/>
     <img class="img_icon" src="/img/icon.svg" alt="Genbrug ikon" />
     <h1>Smagskasser</h1>
     <section>
@@ -37,7 +39,7 @@ section
 grid-template-columns: repeat(5, 1fr);
 max-width: 1450px;}
 
-@media (max-width: 800px) {
+@media (max-width: 800px)
    section 
 {display: grid;
 grid-template-columns: repeat(2, 1fr);}

@@ -1,6 +1,7 @@
 ---
 import Layout from "../layout/Layout.astro";
 import Pcard from "../componenter/Pcard.astro";
+import MovingBanner2 from "../componenter/Moving_banner_2.astro";
 const endpoint = "https://okvowjyxecqetvbxrzgz.supabase.co/rest/v1/beers_produkter?select=*";
 
 const options={
@@ -16,6 +17,7 @@ console.log(data);
 ---
 
 <Layout>
+    <MovingBanner2/>
     <img class="img_icon" src="/img/icon.svg" alt="Genbrug ikon" />
     <h1>Billige specialøl</h1>
      <div class="filtrer">
@@ -23,13 +25,17 @@ console.log(data);
     <p>FILTRER</p>
   </div>
   <section id="buttons">
-        <button data-type="Alle">Alle</button>
+    <div class="Button_1">
+    <button data-type="Alle">Alle</button>
     <button data-type="Ipa">Ipa</button>
-     <button data-type="Stout">Stout</button>
-      <button data-type="Wild ale">Wild ale</button>
-       <button data-type="Lager">Lager</button>
-        <button data-type="Weissbier">Weissbier</button>
-        <button data-type="Weisse">Weisse</button>
+    <button data-type="Stout">Stout</button>
+    <button data-type="Wild ale">Wild ale</button>
+    </div>
+    <div class="Button_2">
+    <button data-type="Lager">Lager</button>
+    <button data-type="Weissbier">Weissbier</button>
+    <button data-type="Weisse">Weisse</button>
+    </div>
 </section>
     <section>
 {data.map((product) => (<Pcard {product}/>))}
@@ -91,6 +97,21 @@ grid-template-columns: repeat(2, 1fr);}
    min-width: 60px;
 }
 
+button{   
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100px;
+}
+
+.Button_1{
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.Button_2{
+    grid-column: 1;
+    grid-row: 2;
+}
 .filtrer {margin: 30px;
 margin-left: 30px;}
 }

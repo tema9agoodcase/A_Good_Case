@@ -1,0 +1,72 @@
+---
+// src/components/TickerBanner.astro
+---
+
+<div class="ticker-wrap" role="marquee" aria-label="Løbende banner">
+  <div class="ticker-track" id="tickerTrack">
+    <span>BEKÆMPER ØLSPILD</span><span class="dot">•</span>
+    <span>SOCIALT ANSVAR</span><span class="dot">•</span>
+    <span>STORT UDVALG</span><span class="dot">•</span>
+    <span>LAVE PRISER</span><span class="dot">•</span>
+    <span>BEKÆMPER ØLSPILD</span><span class="dot">•</span>
+    <span>SOCIALT ANSVAR</span><span class="dot">•</span>
+    <span>STORT UDVALG</span><span class="dot">•</span>
+    <span>LAVE PRISER</span><span class="dot">•</span>
+  </div>
+</div>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+  .ticker-wrap {
+    background: #252424;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 6px 0;
+    width: 100%;
+  }
+
+  .ticker-track {
+    display: inline-flex;
+    will-change: transform;
+  }
+
+  .ticker-track span {
+    font-family: 'Roboto', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: #FFFDFB;
+    padding: 0 1.5rem;
+    white-space: nowrap;
+  }
+
+  .dot {
+    color: #FFFDFB;
+    opacity: 0.6;
+  }
+
+  @keyframes ticker {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+</style>
+
+<script>
+  const track = document.getElementById('tickerTrack');
+
+  if (track) {
+    const ensureEnoughContent = () => {
+      const minWidth = window.innerWidth * 2;
+      while (track.scrollWidth < minWidth) {
+        track.innerHTML += track.innerHTML;
+      }
+      const finalWidth = track.scrollWidth;
+      if (finalWidth > 0) {
+        track.style.animation = `ticker ${Math.max(finalWidth / 80, 10)}s linear infinite`;
+      }
+    };
+
+    document.fonts.ready.then(ensureEnoughContent);
+  }
+</script>
